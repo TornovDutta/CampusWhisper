@@ -29,7 +29,7 @@ A modern, anonymous social platform built with React, allowing users to share po
 1. Clone the repository:
    ```bash
    git clone https://github.com/TornovDutta/CampusWhisper.git
-   cd annomus02
+   cd CampusWhisper
    ```
 
 2. Install dependencies:
