@@ -1,4 +1,4 @@
-# Annomus02
+# CampusWhisper
 
 A modern, anonymous social platform built with React, allowing users to share posts, engage with content, and report issues safely.
 
@@ -28,7 +28,7 @@ A modern, anonymous social platform built with React, allowing users to share po
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/TornovDutta/CampusWhisper.git
    cd annomus02
    ```
 
