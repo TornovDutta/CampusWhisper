@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { PenSquare } from "lucide-react";
 import { usePostStore } from "../store/usePostStore.js";
+import { useAuthStore } from "../store/useAuthStore.js";
 import { PostCard } from "../components/ui/PostCard.jsx";
 import { Loader } from "../components/ui/Loader.jsx";
 import { ErrorMessage } from "../components/ui/ErrorMessage.jsx";
@@ -13,7 +14,10 @@ export function HomeFeed() {
   const category = searchParams.get("category");
   
   const { posts, fetchPosts, isLoading, error } = usePostStore();
+  const user = useAuthStore((state) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isLoggedIn = Boolean(user);
 
   useEffect(() => {
     fetchPosts(category);
@@ -26,13 +30,16 @@ export function HomeFeed() {
         <h1 className="text-2xl font-bold text-slate-100 capitalize">
           {category ? `${category} Whispers` : 'All Whispers'}
         </h1>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-4 py-2.5 rounded-full shadow-lg shadow-primary/20 transition-transform active:scale-95"
-        >
-          <PenSquare size={16} />
-          <span className="hidden sm:inline">New Whisper</span>
-        </button>
+
+        {isLoggedIn && (
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="flex items-center gap-2 bg-primary hover:bg-primary-hover text-white text-sm font-semibold px-4 py-2.5 rounded-full shadow-lg shadow-primary/20 transition-transform active:scale-95"
+          >
+            <PenSquare size={16} />
+            <span className="hidden sm:inline">New Whisper</span>
+          </button>
+        )}
       </div>
 
       <div className="space-y-4">
