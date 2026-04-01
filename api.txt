@@ -1,0 +1,165 @@
+# CampusWhisper API Endpoints
+Base URL: http://localhost:8080/api
+Every protected API requires the header: `Authorization: Bearer <token>`
+
+--------------------------------------------------
+1. AUTHENTICATION
+--------------------------------------------------
+Signup
+- URL: POST /auth/register
+- Access: Public
+- Request Body:
+  {
+    "username": "...",
+    "email": "...",
+    "password": "..."
+  }
+- Response Data: Success message or user object (Token optional here if forced to login after)
+
+Login
+- URL: POST /auth/login
+- Access: Public
+- Request Body:
+  {
+    "email": "...",
+    "password": "..."
+  }
+- Response Data:
+  {
+    "token": "..."
+  }
+
+Get Current User
+- URL: GET /auth/me
+- Access: Protected
+- Request Body: None
+- Response Data:
+  {
+    "id": 1,
+    "username": "...",
+    "email": "..."
+  }
+
+--------------------------------------------------
+2. POSTS (WHISPERS)
+--------------------------------------------------
+Get All Posts
+- URL: GET /posts
+- Access: Protected
+- Query Params: ?category=optional_category_name
+- Request Body: None
+- Response Data:
+  [
+    {
+      "id": 1,
+      "anonymousUsername": "...",
+      "content": "...",
+      "category": "...",
+      "upvotes": 0,
+      "downvotes": 0,
+      "commentCount": 0,
+      "createdAt": "2026-04-01T..."
+    }
+  ]
+
+Get Single Post
+- URL: GET /posts/:id
+- Access: Protected
+- Request Body: None
+- Response Data: Single post object (same structure as above)
+
+Create Post
+- URL: POST /posts
+- Access: Protected
+- Request Body:
+  {
+    "content": "...",
+    "category": "..."
+  }
+- Response Data: Created post object
+
+Delete Post
+- URL: DELETE /posts/:id
+- Access: Protected
+- Request Body: None
+- Response Data: Success message
+
+--------------------------------------------------
+3. COMMENTS
+--------------------------------------------------
+Get Comments for a Post
+- URL: GET /comments/post/:postId
+- Access: Protected
+- Request Body: None
+- Response Data:
+  [
+    {
+      "id": 1,
+      "postId": 1,
+      "anonymousUsername": "...",
+      "content": "...",
+      "createdAt": "2026-04-01T..."
+    }
+  ]
+
+Add Comment
+- URL: POST /comments
+- Access: Protected
+- Request Body:
+  {
+    "postId": 1,
+    "content": "..."
+  }
+- Response Data: Created comment object
+
+--------------------------------------------------
+4. VOTES & REPORTS (POST LEVEL)
+--------------------------------------------------
+Vote on Post
+- URL: POST /votes
+- Access: Protected
+- Request Body:
+  {
+    "postId": 1,
+    "type": "upvote" // or "downvote"
+  }
+- Response Data: Success message or updated post vote counts
+
+Report a Post
+- URL: POST /reports
+- Access: Protected
+- Request Body:
+  {
+    "postId": 1,
+    "reason": "..."
+  }
+- Response Data: Success message
+
+--------------------------------------------------
+5. NOTIFICATIONS
+--------------------------------------------------
+Get Notifications
+- URL: GET /notifications
+- Access: Protected
+- Request Body: None
+- Response Data:
+  [
+    {
+      "id": 1,
+      "message": "...",
+      "createdAt": "2026-04-01T..."
+    }
+  ]
+
+--------------------------------------------------
+6. SAFE REPORTS
+--------------------------------------------------
+Create Safe Report (Direct to moderators)
+- URL: POST /safe-reports
+- Access: Protected
+- Request Body:
+  {
+    "title": "...",
+    "description": "..."
+  }
+- Response Data: Success message
