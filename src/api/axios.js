@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore.js';
 
-// Accessing state outside of React functions in Zustand requires `getState`
-// We'll configure that in the interceptor.
+
+//use axios for the api calls
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
