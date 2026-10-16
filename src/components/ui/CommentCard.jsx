@@ -31,7 +31,7 @@ export function CommentCard({ comment }) {
   };
 
   return (
-    <div className="flex items-start gap-3 p-4 rounded-xl glass-panel border border-white/[0.06] hover:border-slate-700/80 transition-all animate-fade-in group">
+    <div className="flex items-start gap-3 p-4 rounded-xl glass-panel border border-slate-200 dark:border-white/[0.06] hover:border-slate-400 dark:hover:border-slate-700/80 transition-all animate-fade-in group">
       
       {/* Geometric Avatar */}
       <div className={`w-8 h-8 rounded-lg bg-gradient-to-tr ${getAvatarGradient(anonymousName)} flex items-center justify-center font-bold text-white text-[11px] shrink-0 border border-white/20 shadow-sm mt-0.5`}>
@@ -43,22 +43,22 @@ export function CommentCard({ comment }) {
         {/* Author Header */}
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="text-xs font-bold text-slate-200 group-hover:text-indigo-300 transition-colors">
+            <span className="text-xs font-bold text-slate-900 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
               {anonymousName}
             </span>
-            <span className="text-[10px] text-emerald-400 font-semibold px-1 py-0.2 bg-emerald-500/10 rounded border border-emerald-500/20">
+            <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold px-1 py-0.2 bg-emerald-500/10 rounded border border-emerald-500/20">
               Verified Student
             </span>
           </div>
 
-          <div className="flex items-center gap-1 text-[10px] text-slate-500">
+          <div className="flex items-center gap-1 text-[10px] text-slate-400 dark:text-slate-500">
             <Clock size={10} />
             <span>{timeAgo(comment.createdAt)}</span>
           </div>
         </div>
 
         {/* Comment Text */}
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-words whitespace-pre-wrap">
+        <p className="text-xs sm:text-sm text-slate-800 dark:text-slate-300 leading-relaxed break-words whitespace-pre-wrap">
           {comment.content}
         </p>
 
@@ -67,10 +67,10 @@ export function CommentCard({ comment }) {
           <button
             onClick={handleUpvote}
             className={`flex items-center gap-1 text-[11px] font-semibold transition-colors ${
-              hasUpvoted ? "text-emerald-400" : "text-slate-500 hover:text-slate-300"
+              hasUpvoted ? "text-emerald-500" : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
             }`}
           >
-            <ThumbsUp size={12} className={hasUpvoted ? "fill-emerald-400" : ""} />
+            <ThumbsUp size={12} className={hasUpvoted ? "fill-emerald-500" : ""} />
             <span>{upvotes > 0 ? upvotes : "Helpful"}</span>
           </button>
         </div>

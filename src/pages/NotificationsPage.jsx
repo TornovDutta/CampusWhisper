@@ -6,69 +6,28 @@ import {
   ThumbsUp, 
   ShieldCheck, 
   Check, 
-  Sparkles,
-  Clock
+  Clock 
 } from "lucide-react";
 import axios from "../api/axios.js";
 import { Loader } from "../components/ui/Loader.jsx";
 import { ErrorMessage } from "../components/ui/ErrorMessage.jsx";
 import { cn } from "../utils/cn.js";
 
-const DEFAULT_NOTIFICATIONS = [
-  {
-    id: "notif-1",
-    type: "reply",
-    title: "New reply on your whisper",
-    message: "Anonymous Owl replied to your post in the Placements channel.",
-    targetUrl: "/feed",
-    isRead: false,
-    createdAt: new Date(Date.now() - 1000 * 60 * 18).toISOString(), // 18m ago
-  },
-  {
-    id: "notif-2",
-    type: "upvote",
-    title: "Milestone reached",
-    message: "Your whisper about the library renovation passed 50 upvotes.",
-    targetUrl: "/feed",
-    isRead: false,
-    createdAt: new Date(Date.now() - 1000 * 60 * 90).toISOString(), // 1.5h ago
-  },
-  {
-    id: "notif-3",
-    type: "system",
-    title: "Pseudonym rotation complete",
-    message: "Your weekly pseudonymous alias has been refreshed. Past posts remain detached.",
-    targetUrl: "/profile",
-    isRead: true,
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString(), // 1d ago
-  },
-  {
-    id: "notif-4",
-    type: "reply",
-    title: "Discussion update",
-    message: "Campus Scholar commented on the midterm grading discussion.",
-    targetUrl: "/feed",
-    isRead: true,
-    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 36).toISOString(),
-  }
-];
-
 export function NotificationsPage() {
-  const [notifications, setNotifications] = useState(DEFAULT_NOTIFICATIONS);
+  const [notifications, setNotifications] = useState([]);
   const [activeTab, setActiveTab] = useState("all");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchNotifications = async () => {
       setIsLoading(true);
+      setError("");
       try {
         const res = await axios.get("/notifications");
-        if (Array.isArray(res.data) && res.data.length > 0) {
-          setNotifications(res.data);
-        }
+        setNotifications(Array.isArray(res.data) ? res.data : []);
       } catch (err) {
-        // Fallback to default notifications
+        setError(err.response?.data?.message || "Failed to load notifications from the database.");
       } finally {
         setIsLoading(false);
       }
@@ -111,12 +70,12 @@ export function NotificationsPage() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto py-6 space-y-6">
+    <div className="w-full max-w-2xl mx-auto py-6 space-y-6 animate-fade-in">
       
       {/* Page Header */}
       <div className="flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-2">
             <Bell size={22} className="text-indigo-400" />
             <span>Campus Activity</span>
             {unreadCount > 0 && (
@@ -133,7 +92,7 @@ export function NotificationsPage() {
         {unreadCount > 0 && (
           <button
             onClick={markAllRead}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl glass-panel border border-white/10 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
           >
             <Check size={13} />
             <span>Mark all read</span>
@@ -169,22 +128,21 @@ export function NotificationsPage() {
 
         {error && <ErrorMessage message={error} />}
 
-        {!isLoading && filteredNotifs.length === 0 && (
+        {!isLoading && !error && filteredNotifs.length === 0 && (
           <div className="glass-panel p-8 rounded-2xl text-center space-y-2 text-slate-400 border border-white/[0.06]">
-            <p className="text-sm font-semibold">No notifications in this tab.</p>
-            <p className="text-xs text-slate-500">You will be notified when peers reply or upvote your anonymous posts.</p>
+            <p className="text-sm font-semibold">No notifications found in your account.</p>
+            <p className="text-xs text-slate-500">Activity on your whispers and replies will appear here.</p>
           </div>
         )}
 
         {filteredNotifs.map((notif) => (
-          <Link
-            to={notif.targetUrl || "/feed"}
+          <div
             key={notif.id}
             className={cn(
-              "glass-panel p-4 rounded-2xl border transition-all flex items-start gap-3.5 block group",
+              "glass-panel p-4 rounded-2xl border transition-all flex items-start gap-3.5 block",
               !notif.isRead
                 ? "border-indigo-500/30 bg-slate-900/90 shadow-md"
-                : "border-white/[0.06] hover:border-slate-700/80 hover:bg-slate-800/40"
+                : "border-white/[0.06] hover:border-slate-700/80"
             )}
           >
             {/* Icon Box */}
@@ -194,8 +152,8 @@ export function NotificationsPage() {
 
             <div className="flex-1 min-w-0 space-y-1">
               <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-bold text-white group-hover:text-indigo-300 transition-colors">
-                  {notif.title}
+                <span className="text-xs font-bold text-slate-100">
+                  {notif.title || "Notification"}
                 </span>
                 <span className="text-[10px] text-slate-500 shrink-0 flex items-center gap-1">
                   <Clock size={10} />
@@ -211,7 +169,7 @@ export function NotificationsPage() {
             {!notif.isRead && (
               <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 mt-2" />
             )}
-          </Link>
+          </div>
         ))}
       </div>
 

@@ -5,7 +5,6 @@ import {
   Clock, 
   MessageSquare, 
   Sparkles, 
-  Filter, 
   Search,
   PenSquare,
   X,
@@ -70,7 +69,7 @@ export function HomeFeed() {
     }
   };
 
-  // Filter and Sort posts locally
+  // Filter and Sort live database posts locally
   const processedPosts = useMemo(() => {
     let result = [...posts];
 
@@ -105,7 +104,7 @@ export function HomeFeed() {
   }, [posts, activeTab, searchQuery, activeSort]);
 
   return (
-    <div className="w-full py-6 space-y-6">
+    <div className="w-full py-6 space-y-6 animate-fade-in">
       
       {/* Feed Hero Header & Tabs */}
       <div className="space-y-4">
@@ -113,12 +112,12 @@ export function HomeFeed() {
         {/* Top Title & Quick Action */}
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
-              <Sparkles size={20} className="text-indigo-400" />
+            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-2">
+              <Sparkles size={20} className="text-indigo-500" />
               <span>{activeTab === "all" ? "Live Campus Whispers" : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Channel`}</span>
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
-              Strictly anonymous student discourse. Real experiences, zero bias.
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+              Live database stream. Anonymous student discourse with zero digital footprint.
             </p>
           </div>
 
@@ -143,7 +142,7 @@ export function HomeFeed() {
                   "px-3.5 py-1.5 rounded-xl transition-all whitespace-nowrap border shrink-0",
                   isActive
                     ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/25"
-                    : "bg-surface/70 text-slate-400 border-white/[0.06] hover:text-slate-200 hover:bg-slate-800/60"
+                    : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                 )}
               >
                 {tag.label}
@@ -153,9 +152,9 @@ export function HomeFeed() {
         </div>
 
         {/* Sort & Search Status Bar */}
-        <div className="flex items-center justify-between gap-3 pt-1 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between gap-3 pt-1 border-t border-slate-200 dark:border-white/[0.06]">
           {/* Sorting Buttons */}
-          <div className="flex items-center gap-1 bg-slate-900/60 p-1 rounded-xl border border-slate-800/70">
+          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-300 dark:border-slate-800/70">
             {SORT_OPTIONS.map((sort) => {
               const Icon = sort.icon;
               const isSelected = activeSort === sort.id;
@@ -166,8 +165,8 @@ export function HomeFeed() {
                   className={cn(
                     "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all",
                     isSelected
-                      ? "bg-slate-800 text-indigo-300 shadow-sm border border-slate-700"
-                      : "text-slate-400 hover:text-slate-200"
+                      ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 shadow-sm border border-slate-200 dark:border-slate-700"
+                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                   )}
                 >
                   <Icon size={13} />
@@ -179,12 +178,12 @@ export function HomeFeed() {
 
           {/* Active Search Badge */}
           {searchQuery && (
-            <div className="flex items-center gap-2 text-xs text-indigo-400 bg-indigo-500/10 border border-indigo-500/25 px-2.5 py-1 rounded-xl animate-fade-in">
+            <div className="flex items-center gap-2 text-xs text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border border-indigo-500/25 px-2.5 py-1 rounded-xl animate-fade-in">
               <Search size={12} />
               <span className="truncate max-w-[120px] sm:max-w-[200px]">"{searchQuery}"</span>
               <button 
                 onClick={() => setSearchQuery("")}
-                className="hover:text-white"
+                className="hover:text-slate-900 dark:hover:text-white"
                 title="Clear search"
               >
                 <X size={13} />
@@ -206,10 +205,10 @@ export function HomeFeed() {
           </div>
         )}
 
-        {error && <ErrorMessage message={error} />}
+        {error && <ErrorMessage message={error} onRetry={() => fetchPosts(activeTab === 'all' ? '' : activeTab)} />}
 
         {!isLoading && !error && processedPosts.length === 0 && (
-          <div className="glass-panel p-8 rounded-2xl text-center space-y-3 border border-white/[0.06]">
+          <div className="glass-panel p-8 rounded-2xl text-center space-y-3">
             <EmptyState 
               message={
                 searchQuery

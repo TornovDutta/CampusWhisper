@@ -9,7 +9,7 @@ export function AppLayout() {
   const isFeedPage = location.pathname.startsWith("/feed") || location.pathname.startsWith("/categories");
 
   return (
-    <div className="min-h-screen bg-background text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-200">
+    <div className="min-h-screen bg-background text-slate-900 dark:text-slate-100 selection:bg-indigo-500/25 selection:text-indigo-600 dark:selection:text-indigo-200 transition-colors">
       <Navbar />
 
       {/* Main Container */}

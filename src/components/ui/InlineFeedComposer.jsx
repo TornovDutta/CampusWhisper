@@ -38,10 +38,10 @@ export function InlineFeedComposer() {
     }
   };
 
-  const username = user?.username || "Anonymous Peer";
+  const username = user?.username || "Student";
 
   return (
-    <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-white/[0.08] shadow-lg transition-all animate-fade-in">
+    <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-white/[0.08] shadow-lg transition-all animate-fade-in">
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="flex items-start gap-3">
           {/* User / Anonymous Avatar */}
@@ -56,7 +56,7 @@ export function InlineFeedComposer() {
               onFocus={() => setIsFocused(true)}
               placeholder="Share an anonymous whisper to campus..."
               rows={isFocused ? 3 : 2}
-              className="w-full bg-slate-950/60 border border-slate-800 focus:border-indigo-500/70 rounded-xl p-3 text-sm text-slate-100 placeholder-slate-500 resize-none focus:outline-none transition-all leading-relaxed"
+              className="w-full bg-slate-50 dark:bg-slate-950/60 border border-slate-300 dark:border-slate-800 focus:border-indigo-500 rounded-xl p-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 resize-none focus:outline-none transition-all leading-relaxed"
             />
 
             {/* Expanded Controls when focused or text is typed */}
@@ -65,7 +65,7 @@ export function InlineFeedComposer() {
                 
                 {/* Category Pills */}
                 <div className="flex flex-wrap items-center gap-1.5">
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
+                  <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mr-1">
                     Channel:
                   </span>
                   {CATEGORIES.map((cat) => {
@@ -80,7 +80,7 @@ export function InlineFeedComposer() {
                           "inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold transition-all border",
                           isSelected
                             ? "bg-indigo-600 text-white border-indigo-500 shadow-sm"
-                            : "bg-slate-900/60 text-slate-400 border-slate-800 hover:text-slate-200"
+                            : "bg-slate-100 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 border-slate-300 dark:border-slate-800 hover:text-slate-900 dark:hover:text-slate-200"
                         )}
                       >
                         <Icon size={12} />
@@ -91,8 +91,8 @@ export function InlineFeedComposer() {
                 </div>
 
                 {/* Footer Controls */}
-                <div className="flex items-center justify-between pt-2 border-t border-slate-800">
-                  <div className="flex items-center gap-1 text-[11px] text-emerald-400">
+                <div className="flex items-center justify-between pt-2 border-t border-slate-200 dark:border-slate-800">
+                  <div className="flex items-center gap-1 text-[11px] text-emerald-600 dark:text-emerald-400 font-medium">
                     <Lock size={12} />
                     <span>Anonymous & 256-bit hashed</span>
                   </div>
@@ -104,7 +104,7 @@ export function InlineFeedComposer() {
                         setContent("");
                         setIsFocused(false);
                       }}
-                      className="px-3 py-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
+                      className="px-3 py-1.5 text-xs font-medium text-slate-500 hover:text-slate-800 dark:hover:text-white transition-colors"
                     >
                       Cancel
                     </button>
