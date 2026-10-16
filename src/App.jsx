@@ -18,27 +18,31 @@ function App() {
   // Re-hydrate user state if token exists
   useEffect(() => {
     if (token) {
-       fetchMe();
+      fetchMe();
     }
   }, [token, fetchMe]);
 
   if (isLoading && token && !useAuthStore.getState().user) {
-    return <div className="h-screen w-full flex items-center justify-center bg-background"><Loader size={48} /></div>;
+    return (
+      <div className="h-screen w-full flex items-center justify-center bg-background">
+        <Loader size={48} />
+      </div>
+    );
   }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AppLayout />}>
-          {/* Public Routes */}
+          {/* Public Accessible Routes */}
           <Route index element={<LandingPage />} />
           <Route path="login" element={<AuthPage />} />
           <Route path="feed" element={<HomeFeed />} />
+          <Route path="categories" element={<HomeFeed />} />
+          <Route path="post/:id" element={<PostDetails />} />
           
-          {/* Protected Routes */}
+          {/* Protected Member Routes */}
           <Route element={<ProtectedRoute />}>
-             <Route path="categories" element={<HomeFeed />} />
-             <Route path="post/:id" element={<PostDetails />} />
              <Route path="notifications" element={<NotificationsPage />} />
              <Route path="report" element={<SafeReportPage />} />
              <Route path="profile" element={<ProfilePage />} />

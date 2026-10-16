@@ -1,13 +1,15 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/useAuthStore.js';
 
-
-//use axios for the api calls
-
-const API_BASE_URL = 'http://localhost:8080/api';
+// Base API URL configured via Vite environment variables
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 api.interceptors.request.use(
