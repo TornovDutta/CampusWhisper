@@ -1,20 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThumbsUp, Clock, ShieldCheck } from "lucide-react";
 import { getAvatarGradient, getInitials } from "../../utils/avatar.js";
+import axios from "../../api/axios.js";
+import { useAuthStore } from "../../store/useAuthStore.js";
 
 export function CommentCard({ comment }) {
   const [upvotes, setUpvotes] = useState(comment.upvotes || 0);
-  const [hasUpvoted, setHasUpvoted] = useState(false);
+  const [hasUpvoted, setHasUpvoted] = useState(comment.hasUpvoted || false);
+  const [isVoting, setIsVoting] = useState(false);
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    setUpvotes(comment.upvotes || 0);
+    setHasUpvoted(comment.hasUpvoted || false);
+  }, [comment.upvotes, comment.hasUpvoted]);
 
   const anonymousName = comment.anonymousUsername || "Anonymous Peer";
 
-  const handleUpvote = () => {
-    if (hasUpvoted) {
-      setUpvotes((v) => Math.max(0, v - 1));
-      setHasUpvoted(false);
-    } else {
-      setUpvotes((v) => v + 1);
-      setHasUpvoted(true);
+  const handleUpvote = async () => {
+    if (!user) {
+      alert("Please sign in to like comments.");
+      return;
+    }
+    if (isVoting) return;
+
+    setIsVoting(true);
+    const prevUpvotes = upvotes;
+    const prevHasUpvoted = hasUpvoted;
+
+    // Optimistic update
+    const nextHasUpvoted = !prevHasUpvoted;
+    setHasUpvoted(nextHasUpvoted);
+    setUpvotes(nextHasUpvoted ? prevUpvotes + 1 : Math.max(0, prevUpvotes - 1));
+
+    try {
+      const res = await axios.post(`/comments/${comment.id}/like`);
+      if (res?.data) {
+        setUpvotes(res.data.upvotes);
+        setHasUpvoted(res.data.hasUpvoted);
+      }
+    } catch (err) {
+      // Revert optimistic update on failure
+      setUpvotes(prevUpvotes);
+      setHasUpvoted(prevHasUpvoted);
+    } finally {
+      setIsVoting(false);
     }
   };
 

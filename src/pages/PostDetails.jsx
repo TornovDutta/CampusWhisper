@@ -25,12 +25,21 @@ export function PostDetails() {
       setIsLoading(true);
       setError('');
       try {
-        const [postRes, commentsRes] = await Promise.all([
+        const requests = [
           axios.get(`/posts/${id}`),
           axios.get(`/comments/post/${id}`)
-        ]);
+        ];
+        if (user) {
+          requests.push(axios.get('/comments/liked-ids').catch(() => ({ data: [] })));
+        }
+        const [postRes, commentsRes, likedRes] = await Promise.all(requests);
         setPost(postRes.data);
-        setComments(Array.isArray(commentsRes.data) ? commentsRes.data : []);
+        const likedIds = new Set(Array.isArray(likedRes?.data) ? likedRes.data : []);
+        const rawComments = Array.isArray(commentsRes.data) ? commentsRes.data : [];
+        setComments(rawComments.map((c) => ({
+          ...c,
+          hasUpvoted: likedIds.has(c.id)
+        })));
       } catch (err) {
         setError(err.response?.data?.message || 'Whisper not found in database or server is unreachable.');
       } finally {
@@ -41,7 +50,7 @@ export function PostDetails() {
     if (id) {
       fetchDetailedPost();
     }
-  }, [id]);
+  }, [id, user]);
 
   const handleAddComment = async (e) => {
     e.preventDefault();
@@ -61,7 +70,8 @@ export function PostDetails() {
         content: newComment.trim() 
       });
       if (response?.data) {
-        setComments((prev) => [...prev, response.data]);
+        setComments((prev) => [...prev, { ...response.data, upvotes: 0, hasUpvoted: false }]);
+        setPost((prev) => prev ? { ...prev, commentCount: (prev.commentCount || 0) + 1 } : prev);
         setNewComment('');
       }
     } catch (err) {

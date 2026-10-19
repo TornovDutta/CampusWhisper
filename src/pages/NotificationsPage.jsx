@@ -35,8 +35,26 @@ export function NotificationsPage() {
     fetchNotifications();
   }, []);
 
-  const markAllRead = () => {
+  const markAllRead = async () => {
+    try {
+      await axios.put("/notifications/read-all");
+    } catch (e) {
+      console.error("Failed to mark all as read:", e);
+    }
     setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
+  };
+
+  const handleNotificationClick = async (notif) => {
+    if (!notif.isRead) {
+      try {
+        await axios.put(`/notifications/${notif.id}/read`);
+        setNotifications((prev) =>
+          prev.map((n) => (n.id === notif.id ? { ...n, isRead: true } : n))
+        );
+      } catch (e) {
+        console.error("Failed to mark notification as read:", e);
+      }
+    }
   };
 
   const filteredNotifs = notifications.filter((n) => {
@@ -135,42 +153,53 @@ export function NotificationsPage() {
           </div>
         )}
 
-        {filteredNotifs.map((notif) => (
-          <div
-            key={notif.id}
-            className={cn(
-              "glass-panel p-4 rounded-2xl border transition-all flex items-start gap-3.5 block",
-              !notif.isRead
-                ? "border-indigo-500/30 bg-slate-900/90 shadow-md"
-                : "border-white/[0.06] hover:border-slate-700/80"
-            )}
-          >
-            {/* Icon Box */}
-            <div className="w-9 h-9 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-center shrink-0 mt-0.5">
-              {getNotifIcon(notif.type)}
-            </div>
-
-            <div className="flex-1 min-w-0 space-y-1">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-bold text-slate-100">
-                  {notif.title || "Notification"}
-                </span>
-                <span className="text-[10px] text-slate-500 shrink-0 flex items-center gap-1">
-                  <Clock size={10} />
-                  {timeAgo(notif.createdAt)}
-                </span>
+        {filteredNotifs.map((notif) => {
+          const contentElement = (
+            <div
+              key={notif.id}
+              onClick={() => handleNotificationClick(notif)}
+              className={cn(
+                "glass-panel p-4 rounded-2xl border transition-all flex items-start gap-3.5 block cursor-pointer",
+                !notif.isRead
+                  ? "border-indigo-500/30 bg-slate-900/90 shadow-md"
+                  : "border-white/[0.06] hover:border-slate-700/80"
+              )}
+            >
+              {/* Icon Box */}
+              <div className="w-9 h-9 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-center shrink-0 mt-0.5">
+                {getNotifIcon(notif.type)}
               </div>
 
-              <p className="text-xs text-slate-300 leading-relaxed">
-                {notif.message}
-              </p>
-            </div>
+              <div className="flex-1 min-w-0 space-y-1">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-bold text-slate-100">
+                    {notif.title || "Notification"}
+                  </span>
+                  <span className="text-[10px] text-slate-500 shrink-0 flex items-center gap-1">
+                    <Clock size={10} />
+                    {timeAgo(notif.createdAt)}
+                  </span>
+                </div>
 
-            {!notif.isRead && (
-              <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 mt-2" />
-            )}
-          </div>
-        ))}
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  {notif.message}
+                </p>
+              </div>
+
+              {!notif.isRead && (
+                <span className="w-2 h-2 rounded-full bg-indigo-500 shrink-0 mt-2" />
+              )}
+            </div>
+          );
+
+          return notif.postId ? (
+            <Link key={notif.id} to={`/post/${notif.postId}`} className="block">
+              {contentElement}
+            </Link>
+          ) : (
+            <div key={notif.id}>{contentElement}</div>
+          );
+        })}
       </div>
 
     </div>
