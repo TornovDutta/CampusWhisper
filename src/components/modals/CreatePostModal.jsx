@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { 
   X, 
   Lock, 
@@ -30,23 +30,7 @@ export function CreatePostModal({ isOpen, onClose }) {
   const [category, setCategory] = useState('general');
   const [errorLocal, setErrorLocal] = useState('');
 
-  // Handle escape key to close
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") onClose();
-      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
-        handleSubmit(e);
-      }
-    };
-    if (isOpen) {
-      window.addEventListener("keydown", handleKeyDown);
-    }
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, content, category]);
-
-  if (!isOpen) return null;
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = useCallback(async (e) => {
     if (e) e.preventDefault();
     if (!content.trim()) {
       setErrorLocal('Please write a whisper before submitting.');
@@ -63,7 +47,23 @@ export function CreatePostModal({ isOpen, onClose }) {
       setCategory('general');
       onClose();
     }
-  };
+  }, [category, content, createPost, onClose]);
+
+  // Handle escape key to close
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+        handleSubmit(e);
+      }
+    };
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, handleSubmit, onClose]);
+
+  if (!isOpen) return null;
 
   const charCount = content.length;
   const isOverLimit = charCount > MAX_CHARS;
@@ -82,13 +82,13 @@ export function CreatePostModal({ isOpen, onClose }) {
               <Sparkles size={16} />
             </div>
             <div>
-              <h2 className="text-sm sm:text-base font-bold tracking-tight">Create Anonymous Whisper</h2>
+              <h2 className="text-sm sm:text-base font-bold tracking-tight text-slate-900 dark:text-slate-100">Create Anonymous Whisper</h2>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">Published under a rotating pseudonymous alias</p>
             </div>
           </div>
           <button 
             onClick={onClose} 
-            className="p-1.5 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-800 dark:hover:text-white transition-colors"
+            className="p-1.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
             title="Close"
           >
             <X size={18} />
@@ -98,14 +98,14 @@ export function CreatePostModal({ isOpen, onClose }) {
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5">
           {errorLocal && (
-            <div className="p-3 text-xs text-rose-500 bg-rose-500/10 border border-rose-500/20 rounded-xl animate-shake">
+            <div className="p-3 text-xs text-rose-600 dark:text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-xl animate-shake font-medium">
               {errorLocal}
             </div>
           )}
 
           {/* Category Selector Pills */}
           <div className="space-y-2">
-            <label className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider block">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
               Select Channel
             </label>
             <div className="flex flex-wrap gap-2">
@@ -121,7 +121,7 @@ export function CreatePostModal({ isOpen, onClose }) {
                       "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all border",
                       isSelected
                         ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/30 scale-102"
-                        : "bg-slate-100 dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 border-slate-300 dark:border-slate-700/60 hover:text-slate-900 dark:hover:text-slate-200"
+                        : "bg-slate-100 dark:bg-slate-900/60 text-slate-700 dark:text-slate-400 border-slate-300 dark:border-slate-700/60 hover:text-slate-900 dark:hover:text-slate-200"
                     )}
                   >
                     <Icon size={13} />
@@ -134,7 +134,7 @@ export function CreatePostModal({ isOpen, onClose }) {
 
           {/* Text Input Area */}
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-slate-600 dark:text-slate-300 uppercase tracking-wider block">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
               Whisper Text
             </label>
             <div className="relative">
@@ -154,7 +154,7 @@ export function CreatePostModal({ isOpen, onClose }) {
               
               {/* Character Counter */}
               <div className="absolute right-3 bottom-3 flex items-center gap-1 text-[11px] font-mono">
-                <span className={cn(isOverLimit ? "text-rose-500 font-bold" : "text-slate-400 dark:text-slate-500")}>
+                <span className={cn(isOverLimit ? "text-rose-500 font-bold" : "text-slate-500 dark:text-slate-400")}>
                   {charCount}
                 </span>
                 <span className="text-slate-400">/ {MAX_CHARS}</span>
@@ -172,7 +172,7 @@ export function CreatePostModal({ isOpen, onClose }) {
 
           {/* Actions Bar */}
           <div className="pt-2 flex items-center justify-between">
-            <span className="text-[11px] text-slate-400 hidden sm:inline">
+            <span className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:inline">
               Press <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 font-mono text-[10px]">Ctrl + Enter</kbd> to publish
             </span>
 
@@ -180,7 +180,7 @@ export function CreatePostModal({ isOpen, onClose }) {
               <button 
                 type="button" 
                 onClick={onClose} 
-                className="px-4 py-2 text-xs font-semibold text-slate-500 hover:text-slate-800 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
               >
                 Cancel
               </button>

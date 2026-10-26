@@ -58,23 +58,23 @@ export function AuthPage() {
       <div className="absolute bottom-1/4 right-1/3 w-80 h-80 bg-violet-600/15 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Main Authentication Card */}
-      <div className="w-full max-w-md glass-panel border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-8 z-10 animate-scale-in space-y-6">
+      <div className="w-full max-w-md glass-panel border border-slate-200/90 dark:border-white/10 rounded-3xl shadow-2xl p-6 sm:p-8 z-10 animate-scale-in space-y-6">
         
         {/* Header with Icon */}
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 to-violet-600 text-white shadow-lg shadow-indigo-600/30 border border-white/20 mb-2">
             <ShieldCheck size={24} />
           </div>
-          <h2 className="text-2xl font-extrabold tracking-tight">
+          <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
             {isLogin ? "Sign In to Campus" : "Create Student Account"}
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             {isLogin ? "Enter your registered student credentials" : "Register with your student email in the database"}
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 dark:bg-slate-900/80 rounded-xl border border-slate-300 dark:border-slate-800">
+        <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100 dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800">
           <button
             type="button"
             onClick={() => setIsLogin(true)}
@@ -82,7 +82,7 @@ export function AuthPage() {
               "py-2 text-xs font-bold rounded-lg transition-all",
               isLogin 
                 ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm border border-slate-200 dark:border-slate-700" 
-                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+                : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
             )}
           >
             Sign In
@@ -94,7 +94,7 @@ export function AuthPage() {
               "py-2 text-xs font-bold rounded-lg transition-all",
               !isLogin 
                 ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm border border-slate-200 dark:border-slate-700" 
-                : "text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+                : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
             )}
           >
             Create Account
@@ -102,7 +102,7 @@ export function AuthPage() {
         </div>
 
         {localMessage && (
-          <div className="p-3 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-xl animate-fade-in">
+          <div className="p-3 text-xs text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-xl animate-fade-in font-medium">
             {localMessage}
           </div>
         )}
@@ -118,7 +118,7 @@ export function AuthPage() {
           
           {!isLogin && (
             <div className="space-y-1.5">
-              <label className="text-xs font-bold uppercase tracking-wider block">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
                 Account Username
               </label>
               <div className="relative">
@@ -130,14 +130,14 @@ export function AuthPage() {
                   placeholder="StudentHandle"
                   value={formData.username}
                   onChange={handleChange}
-                  className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
+                  className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
                 />
               </div>
             </div>
           )}
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold uppercase tracking-wider block">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
               Student Email
             </label>
             <div className="relative">
@@ -149,13 +149,13 @@ export function AuthPage() {
                 placeholder="student@university.edu"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
+                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
               />
             </div>
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold uppercase tracking-wider block">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider block">
               Password
             </label>
             <div className="relative">
@@ -167,7 +167,7 @@ export function AuthPage() {
                 placeholder="••••••••••••"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-11 py-3 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
+                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-10 pr-11 py-3 text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/50 transition-colors"
               />
               <button
                 type="button"

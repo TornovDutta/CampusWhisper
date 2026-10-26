@@ -11,7 +11,6 @@ import {
   Compass
 } from "lucide-react";
 import { usePostStore } from "../store/usePostStore.js";
-import { useAuthStore } from "../store/useAuthStore.js";
 import { PostCard } from "../components/ui/PostCard.jsx";
 import { Loader } from "../components/ui/Loader.jsx";
 import { ErrorMessage } from "../components/ui/ErrorMessage.jsx";
@@ -50,18 +49,14 @@ export function HomeFeed() {
     setSearchQuery
   } = usePostStore();
   
-  const user = useAuthStore((state) => state.user);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState(categoryParam || "all");
+  const activeTab = categoryParam || "all";
 
   useEffect(() => {
-    const cat = categoryParam || "";
-    setActiveTab(categoryParam || "all");
-    fetchPosts(cat);
+    fetchPosts(categoryParam || "");
   }, [categoryParam, fetchPosts]);
 
   const handleTabChange = (tabId) => {
-    setActiveTab(tabId);
     if (tabId === "all") {
       setSearchParams({});
     } else {
@@ -112,11 +107,11 @@ export function HomeFeed() {
         {/* Top Title & Quick Action */}
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-2">
+            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-2">
               <Sparkles size={20} className="text-indigo-500" />
               <span>{activeTab === "all" ? "Live Campus Whispers" : `${activeTab.charAt(0).toUpperCase() + activeTab.slice(1)} Channel`}</span>
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-0.5">
               Live database stream. Anonymous student discourse with zero digital footprint.
             </p>
           </div>
@@ -142,7 +137,7 @@ export function HomeFeed() {
                   "px-3.5 py-1.5 rounded-xl transition-all whitespace-nowrap border shrink-0",
                   isActive
                     ? "bg-indigo-600 text-white border-indigo-500 shadow-md shadow-indigo-600/25"
-                    : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+                    : "glass-panel text-slate-700 dark:text-slate-300 border-slate-200/90 dark:border-white/10 hover:text-slate-900 dark:hover:text-slate-100 hover:border-slate-300 dark:hover:border-slate-700"
                 )}
               >
                 {tag.label}
@@ -154,7 +149,7 @@ export function HomeFeed() {
         {/* Sort & Search Status Bar */}
         <div className="flex items-center justify-between gap-3 pt-1 border-t border-slate-200 dark:border-white/[0.06]">
           {/* Sorting Buttons */}
-          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-300 dark:border-slate-800/70">
+          <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900/60 p-1 rounded-xl border border-slate-200 dark:border-slate-800/70">
             {SORT_OPTIONS.map((sort) => {
               const Icon = sort.icon;
               const isSelected = activeSort === sort.id;
@@ -165,8 +160,8 @@ export function HomeFeed() {
                   className={cn(
                     "flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-all",
                     isSelected
-                      ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 shadow-sm border border-slate-200 dark:border-slate-700"
-                      : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
+                      ? "bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-300 shadow-sm border border-slate-200/80 dark:border-slate-700"
+                      : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
                   )}
                 >
                   <Icon size={13} />

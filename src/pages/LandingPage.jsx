@@ -134,7 +134,7 @@ export function LandingPage() {
 
           {/* Live Interactive Preview Card */}
           <div className="w-full max-w-2xl pt-6 animate-slide-up">
-            <div className="glass-panel glass-panel-hover p-5 sm:p-6 rounded-2xl border text-left space-y-4 shadow-2xl relative">
+            <div className="glass-panel glass-panel-hover p-5 sm:p-6 rounded-2xl border border-slate-200/90 dark:border-white/10 text-left space-y-4 shadow-xl relative">
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
@@ -143,19 +143,19 @@ export function LandingPage() {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-sm">Anonymous Falcon</span>
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold text-emerald-500 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
+                      <span className="font-bold text-sm text-slate-900 dark:text-slate-100">Anonymous Falcon</span>
+                      <span className="px-1.5 py-0.5 rounded text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20">
                         Verified Senior
                       </span>
                     </div>
-                    <div className="flex items-center gap-1.5 text-xs text-slate-400 mt-0.5">
+                    <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                       <Clock size={11} />
                       <span>18 minutes ago</span>
                     </div>
                   </div>
                 </div>
 
-                <span className="badge-pill bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/25">
+                <span className="badge-pill bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/25">
                   <Briefcase size={12} />
                   <span>Placement 2026</span>
                 </span>
@@ -171,21 +171,21 @@ export function LandingPage() {
                     onClick={handleMockUpvote}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all ${
                       mockUpvoted 
-                        ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30" 
-                        : "bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 text-slate-600 dark:text-slate-300 hover:text-emerald-500"
+                        ? "bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30" 
+                        : "bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 hover:text-emerald-600"
                     }`}
                   >
                     <ThumbsUp size={14} className={mockUpvoted ? "fill-emerald-500 dark:fill-emerald-400" : ""} />
                     <span>{mockVotes}</span>
                   </button>
 
-                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-500 dark:text-slate-400">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-800 text-slate-600 dark:text-slate-400">
                     <MessageSquare size={14} />
                     <span>32 comments</span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 text-[11px] text-indigo-500 font-semibold">
+                <div className="flex items-center gap-1 text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold">
                   <CheckCircle2 size={13} />
                   <span>Cryptographically verified</span>
                 </div>
@@ -196,21 +196,21 @@ export function LandingPage() {
 
           {/* Metric Highlights Ticker */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-4xl pt-4">
-            <div className="glass-panel p-4 rounded-2xl text-center">
-              <span className="text-2xl sm:text-3xl font-extrabold">100%</span>
-              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">Zero IP Logs</p>
+            <div className="glass-panel border border-slate-200/80 dark:border-white/10 p-4 rounded-2xl text-center">
+              <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-slate-100">100%</span>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider">Zero IP Logs</p>
             </div>
-            <div className="glass-panel p-4 rounded-2xl text-center">
-              <span className="text-2xl sm:text-3xl font-extrabold text-indigo-500 dark:text-indigo-400">256-Bit</span>
-              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">SHA Shield</p>
+            <div className="glass-panel border border-slate-200/80 dark:border-white/10 p-4 rounded-2xl text-center">
+              <span className="text-2xl sm:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400">256-Bit</span>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider">SHA Shield</p>
             </div>
-            <div className="glass-panel p-4 rounded-2xl text-center">
-              <span className="text-2xl sm:text-3xl font-extrabold text-emerald-500 dark:text-emerald-400">Ephemeral</span>
-              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">Alias Rotation</p>
+            <div className="glass-panel border border-slate-200/80 dark:border-white/10 p-4 rounded-2xl text-center">
+              <span className="text-2xl sm:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400">Ephemeral</span>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider">Alias Rotation</p>
             </div>
-            <div className="glass-panel p-4 rounded-2xl text-center">
-              <span className="text-2xl sm:text-3xl font-extrabold text-cyan-500 dark:text-cyan-400">Direct</span>
-              <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">Safe Escalation</p>
+            <div className="glass-panel border border-slate-200/80 dark:border-white/10 p-4 rounded-2xl text-center">
+              <span className="text-2xl sm:text-3xl font-extrabold text-cyan-600 dark:text-cyan-400">Direct</span>
+              <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 mt-1 uppercase tracking-wider">Safe Escalation</p>
             </div>
           </div>
 
@@ -221,72 +221,72 @@ export function LandingPage() {
         {/* ========================================================================= */}
         <section className="space-y-8">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Specialized Campus Channels
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Structured discussion spaces tailored to every facet of student life and career milestones.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
                 <Briefcase size={22} />
               </div>
-              <h3 className="text-base font-bold">Placements & Career</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Placements & Career</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Online assessment formats, interview question banks, salary transparency, and internship guidance shared by senior students.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400">
                 <BookOpen size={22} />
               </div>
-              <h3 className="text-base font-bold">Academics & Grading Curves</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Academics & Grading Curves</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Objective professor course reviews, syllabus breakdowns, midterm relative curves, and past question repositories.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-600 dark:text-purple-400">
                 <Calendar size={22} />
               </div>
-              <h3 className="text-base font-bold">Campus Events & Hackathons</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Campus Events & Hackathons</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Teammate recruitment for hackathons, club announcements, technical symposiums, and cultural festivals.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-600 dark:text-rose-400">
                 <MessageSquare size={22} />
               </div>
-              <h3 className="text-base font-bold">Unfiltered Thoughts</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Unfiltered Thoughts</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 A safe, non-judgmental space to vent about burnout, academic pressure, career anxiety, or seek anonymous advice from peers.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                 <Building size={22} />
               </div>
-              <h3 className="text-base font-bold">Campus Infrastructure</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Campus Infrastructure</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Library study pod availability, campus Wi-Fi performance, lab equipment updates, and hostel facility feedback.
               </p>
             </div>
 
-            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border">
-              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-500">
+            <div className="glass-panel glass-panel-hover p-6 rounded-2xl space-y-3 border border-slate-200/80 dark:border-white/10">
+              <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 dark:text-amber-400">
                 <ShieldAlert size={22} />
               </div>
-              <h3 className="text-base font-bold">Confidential Safe Report</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Confidential Safe Report</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Direct escalation channel for harassment, academic dishonesty, and safety hazards straight to university compliance officers.
               </p>
             </div>
@@ -297,12 +297,12 @@ export function LandingPage() {
         {/* ========================================================================= */}
         {/* SECTION 3: HOW ANONYMITY WORKS (CRYPTOGRAPHIC PIPELINE) */}
         {/* ========================================================================= */}
-        <section className="glass-panel rounded-3xl p-8 sm:p-12 border space-y-10">
+        <section className="glass-panel rounded-3xl p-8 sm:p-12 border border-slate-200/80 dark:border-white/10 space-y-10">
           <div className="text-center space-y-2 max-w-2xl mx-auto">
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Cryptographic Data Decoupling
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               How CampusWhisper protects student privacy through architectural separation.
             </p>
           </div>
@@ -313,8 +313,8 @@ export function LandingPage() {
               <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white font-extrabold flex items-center justify-center shadow-md">
                 1
               </div>
-              <h3 className="text-base font-bold">Institutional Handshake</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Institutional Handshake</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Students authenticate using institutional email credentials. This guarantees every participant is a verified student without storing email records alongside user content.
               </p>
             </div>
@@ -323,8 +323,8 @@ export function LandingPage() {
               <div className="w-10 h-10 rounded-xl bg-violet-600 text-white font-extrabold flex items-center justify-center shadow-md">
                 2
               </div>
-              <h3 className="text-base font-bold">One-Way Decoupling</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">One-Way Decoupling</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 When whispers or comments are persisted, the user ID is stripped. The content record is detached from user account tables using one-way cryptographic tokens.
               </p>
             </div>
@@ -333,8 +333,8 @@ export function LandingPage() {
               <div className="w-10 h-10 rounded-xl bg-emerald-600 text-white font-extrabold flex items-center justify-center shadow-md">
                 3
               </div>
-              <h3 className="text-base font-bold">Ephemeral Alias Assignment</h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+              <h3 className="text-base font-bold text-slate-900 dark:text-slate-100">Ephemeral Alias Assignment</h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
                 Each whisper is issued an ephemeral persona (e.g. "Silent Architect", "Cipher Fox") that rotates across sessions, preventing behavioral profiling across channels.
               </p>
             </div>
@@ -345,21 +345,21 @@ export function LandingPage() {
         {/* ========================================================================= */}
         {/* SECTION 4: INSTITUTIONAL SAFE REPORTING SPOTLIGHT */}
         {/* ========================================================================= */}
-        <section className="glass-panel rounded-3xl p-8 sm:p-10 border border-rose-500/20 bg-gradient-to-br from-rose-950/20 via-surface to-surface flex flex-col md:flex-row items-center gap-8">
-          <div className="w-20 h-20 rounded-3xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-500 shrink-0 shadow-lg shadow-rose-950/30">
+        <section className="glass-panel rounded-3xl p-8 sm:p-10 border border-rose-500/20 bg-gradient-to-br from-rose-500/10 dark:from-rose-950/20 via-surface to-surface flex flex-col md:flex-row items-center gap-8">
+          <div className="w-20 h-20 rounded-3xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-600 dark:text-rose-400 shrink-0 shadow-lg shadow-rose-950/30">
             <ShieldAlert size={40} />
           </div>
 
           <div className="flex-1 space-y-3 text-center md:text-left">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-500 text-xs font-bold border border-rose-500/20">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 text-xs font-bold border border-rose-500/20">
               <Scale size={13} />
               <span>Campus Ethics & Welfare Compliance</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight">
+            <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Confidential Whistleblower & Safety System
             </h3>
-            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-300 leading-relaxed max-w-2xl">
-              Anonymity should never enable harassment. CampusWhisper includes a dedicated institutional escalation module for serious incidents like academic dishonesty, bullying, and facility hazards. Each submission generates an encrypted tracking token (<code className="px-1.5 py-0.5 rounded bg-slate-900 text-rose-400 text-xs font-mono">CW-SAFE-XXXX-XXX</code>) allowing tracking without identity disclosure.
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+              Anonymity should never enable harassment. CampusWhisper includes a dedicated institutional escalation module for serious incidents like academic dishonesty, bullying, and facility hazards. Each submission generates an encrypted tracking token (<code className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-900 text-rose-600 dark:text-rose-400 text-xs font-mono border border-slate-300 dark:border-slate-800">CW-SAFE-XXXX-XXX</code>) allowing tracking without identity disclosure.
             </p>
             <div className="pt-2">
               <Link
@@ -378,10 +378,10 @@ export function LandingPage() {
         {/* ========================================================================= */}
         <section className="space-y-8 max-w-3xl mx-auto w-full">
           <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
+            <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Frequently Asked Questions
             </h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-slate-600 dark:text-slate-400">
               Understanding cryptographic security and student protection on CampusWhisper.
             </p>
           </div>
@@ -392,18 +392,18 @@ export function LandingPage() {
               return (
                 <div 
                   key={index}
-                  className="glass-panel rounded-2xl border overflow-hidden transition-all"
+                  className="glass-panel rounded-2xl border border-slate-200/80 dark:border-white/10 overflow-hidden transition-all"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                    className="w-full p-5 text-left font-bold text-sm sm:text-base flex items-center justify-between gap-4"
+                    className="w-full p-5 text-left font-bold text-sm sm:text-base text-slate-900 dark:text-slate-100 flex items-center justify-between gap-4"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown size={18} className={`shrink-0 transition-transform ${isOpen ? "rotate-180 text-indigo-500" : "text-slate-400"}`} />
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200 dark:border-white/[0.06] animate-slide-down">
+                    <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-slate-200 dark:border-white/[0.06] animate-slide-down">
                       {faq.a}
                     </div>
                   )}
@@ -416,12 +416,12 @@ export function LandingPage() {
         {/* ========================================================================= */}
         {/* SECTION 6: BOTTOM CALL TO ACTION */}
         {/* ========================================================================= */}
-        <section className="glass-panel p-8 sm:p-14 rounded-3xl border text-center space-y-6 relative overflow-hidden bg-gradient-to-r from-indigo-950/40 via-surface to-violet-950/40">
+        <section className="glass-panel p-8 sm:p-14 rounded-3xl border border-slate-200/80 dark:border-white/10 text-center space-y-6 relative overflow-hidden bg-gradient-to-r from-indigo-500/10 dark:from-indigo-950/40 via-surface to-violet-500/10 dark:to-violet-950/40">
           <div className="max-w-2xl mx-auto space-y-3">
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
               Ready to Speak Freely?
             </h2>
-            <p className="text-sm sm:text-base text-slate-500 dark:text-slate-400">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400">
               Join thousands of peers in the verified student network. Share advice, read placement breakdowns, and protect your identity.
             </p>
           </div>
@@ -435,7 +435,7 @@ export function LandingPage() {
             </Link>
             <Link
               to="/feed"
-              className="w-full sm:w-auto px-8 py-3.5 rounded-xl glass-panel hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-sm transition-all border"
+              className="w-full sm:w-auto px-8 py-3.5 rounded-xl glass-panel hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-sm transition-all border border-slate-300 dark:border-slate-700"
             >
               Browse Public Feed
             </Link>
@@ -447,9 +447,9 @@ export function LandingPage() {
       {/* ========================================================================= */}
       {/* SECTION 7: PROFESSIONAL FOOTER */}
       {/* ========================================================================= */}
-      <footer className="border-t border-slate-200 dark:border-white/[0.08] bg-slate-100 dark:bg-slate-950/80 py-12 px-4 sm:px-6 relative z-10 text-xs text-slate-500">
+      <footer className="border-t border-slate-200 dark:border-white/[0.08] bg-slate-50 dark:bg-slate-950/80 py-12 px-4 sm:px-6 relative z-10 text-xs text-slate-500 dark:text-slate-400">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5 font-bold text-slate-700 dark:text-slate-300">
+          <div className="flex items-center gap-2.5 font-bold text-slate-800 dark:text-slate-200">
             <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center text-white">
               <ShieldCheck size={16} />
             </div>

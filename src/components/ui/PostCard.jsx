@@ -18,11 +18,11 @@ import { usePostStore } from "../../store/usePostStore.js";
 import { getAvatarGradient, getInitials } from "../../utils/avatar.js";
 
 const CATEGORY_STYLES = {
-  placement: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/25",
-  academics: "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/25",
-  events: "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/25",
-  confessions: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/25",
-  general: "bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-500/25",
+  placement: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25",
+  academics: "bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 border-cyan-500/25",
+  events: "bg-purple-500/10 text-purple-700 dark:text-purple-400 border-purple-500/25",
+  confessions: "bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/25",
+  general: "bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 border-indigo-500/25",
 };
 
 export function PostCard({ post, isDetail = false }) {
@@ -80,7 +80,7 @@ export function PostCard({ post, isDetail = false }) {
     : post.content;
 
   return (
-    <article className="glass-panel glass-panel-hover rounded-2xl p-5 sm:p-6 w-full space-y-4 border border-slate-200 dark:border-white/[0.08] animate-slide-up transition-all group">
+    <article className="glass-panel glass-panel-hover rounded-2xl p-5 sm:p-6 w-full space-y-4 border border-slate-200/90 dark:border-white/[0.08] animate-slide-up transition-all group">
       
       {/* Header Info */}
       <div className="flex items-start justify-between gap-3">
@@ -95,7 +95,7 @@ export function PostCard({ post, isDetail = false }) {
               <span className="font-bold text-slate-900 dark:text-slate-100 text-sm tracking-tight group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
                 {anonymousName}
               </span>
-              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 rounded border border-emerald-500/20">
+              <span className="inline-flex items-center gap-0.5 px-1.5 py-0.2 text-[10px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-500/10 rounded border border-emerald-500/20">
                 Verified Peer
               </span>
             </div>
@@ -150,8 +150,8 @@ export function PostCard({ post, isDetail = false }) {
               className={cn(
                 "flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-semibold transition-all active:scale-95",
                 post.hasUpvoted
-                  ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
-                  : "text-slate-500 dark:text-slate-400 hover:text-emerald-500 hover:bg-slate-200 dark:hover:bg-slate-800"
+                  ? "bg-emerald-500/20 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30"
+                  : "text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-200/70 dark:hover:bg-slate-800"
               )}
               title="Upvote whisper"
             >
@@ -167,8 +167,8 @@ export function PostCard({ post, isDetail = false }) {
               className={cn(
                 "flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-semibold transition-all active:scale-95",
                 post.hasDownvoted
-                  ? "bg-rose-500/20 text-rose-600 dark:text-rose-400 border border-rose-500/30"
-                  : "text-slate-500 dark:text-slate-400 hover:text-rose-500 hover:bg-slate-200 dark:hover:bg-slate-800"
+                  ? "bg-rose-500/20 text-rose-700 dark:text-rose-400 border border-rose-500/30"
+                  : "text-slate-600 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-slate-200/70 dark:hover:bg-slate-800"
               )}
               title="Downvote whisper"
             >
@@ -181,13 +181,13 @@ export function PostCard({ post, isDetail = false }) {
           {!isDetail ? (
             <Link
               to={`/post/${post.id}`}
-              className="flex items-center gap-1.5 px-3 py-1.5 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100 dark:bg-slate-900/60 hover:bg-slate-200 dark:hover:bg-slate-800/80 rounded-xl border border-slate-300 dark:border-slate-800 transition-colors font-medium"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-slate-700 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 bg-slate-100 dark:bg-slate-900/60 hover:bg-slate-200/80 dark:hover:bg-slate-800/80 rounded-xl border border-slate-300 dark:border-slate-800 transition-colors font-medium"
             >
               <MessageSquare size={14} />
               <span>{post.commentCount || 0} comments</span>
             </Link>
           ) : (
-            <div className="flex items-center gap-1.5 px-3 py-1.5 text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-900/60 rounded-xl border border-slate-300 dark:border-slate-800 font-medium">
+            <div className="flex items-center gap-1.5 px-3 py-1.5 text-slate-600 dark:text-slate-400 bg-slate-100 dark:bg-slate-900/60 rounded-xl border border-slate-300 dark:border-slate-800 font-medium">
               <MessageSquare size={14} />
               <span>{post.commentCount || 0} comments</span>
             </div>
@@ -200,7 +200,7 @@ export function PostCard({ post, isDetail = false }) {
           {/* Share / Copy link */}
           <button
             onClick={handleShare}
-            className="p-2 rounded-xl text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-slate-100 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-300 dark:hover:border-slate-700/60 transition-colors relative"
+            className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-slate-100 dark:hover:bg-slate-800/70 border border-transparent hover:border-slate-300 dark:hover:border-slate-700/60 transition-colors relative"
             title="Share whisper link"
           >
             {isCopied ? <Check size={15} className="text-emerald-500" /> : <Share2 size={15} />}
@@ -218,7 +218,7 @@ export function PostCard({ post, isDetail = false }) {
               "p-2 rounded-xl border border-transparent transition-colors",
               isBookmarked 
                 ? "text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/20" 
-                : "text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/70"
+                : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/70"
             )}
             title="Save whisper"
           >
@@ -228,7 +228,7 @@ export function PostCard({ post, isDetail = false }) {
           {/* Report Button */}
           <button
             onClick={handleReport}
-            className="p-2 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-colors relative"
+            className="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-rose-600 dark:hover:text-rose-400 hover:bg-rose-500/10 border border-transparent hover:border-rose-500/20 transition-colors relative"
             title="Report anonymously"
           >
             <ShieldAlert size={15} />

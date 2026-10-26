@@ -82,7 +82,7 @@ export const usePostStore = create((set, get) => ({
 
     try {
       await axios.post('/votes', { postId, type: 'upvote' });
-    } catch (err) {
+    } catch {
       // Revert if vote failed
       get().fetchPosts(get().activeFilter === 'all' ? '' : get().activeFilter);
     }
@@ -109,7 +109,7 @@ export const usePostStore = create((set, get) => ({
 
     try {
       await axios.post('/votes', { postId, type: 'downvote' });
-    } catch (err) {
+    } catch {
       // Revert if vote failed
       get().fetchPosts(get().activeFilter === 'all' ? '' : get().activeFilter);
     }

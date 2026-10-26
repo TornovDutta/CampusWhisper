@@ -38,7 +38,7 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-16 glass-nav z-50 border-b transition-all">
+      <header className="fixed top-0 left-0 right-0 h-16 glass-nav z-50 border-b border-slate-200/80 dark:border-white/[0.08] transition-all">
         <div className="max-w-7xl mx-auto h-full px-3 sm:px-6 flex items-center justify-between gap-3">
           
           {/* Brand Logo */}
@@ -51,10 +51,10 @@ export function Navbar() {
                 <ShieldCheck size={18} className="text-white" />
               </div>
               <div className="flex flex-col">
-                <span className="text-base sm:text-lg font-bold tracking-tight flex items-center gap-1">
+                <span className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100 flex items-center gap-1">
                   Campus<span className="text-indigo-500 dark:text-indigo-400">Whisper</span>
                 </span>
-                <span className="text-[9px] uppercase font-bold tracking-wider text-slate-400 hidden sm:block">
+                <span className="text-[9px] uppercase font-bold tracking-wider text-slate-500 dark:text-slate-400 hidden sm:block">
                   Verified Student Voice
                 </span>
               </div>
@@ -63,13 +63,13 @@ export function Navbar() {
 
           {/* Compact / Sleek Search Bar */}
           <div className="flex items-center relative flex-1 max-w-[170px] sm:max-w-[210px] md:max-w-[250px]">
-            <Search size={13} className="absolute left-2.5 text-slate-400 pointer-events-none" />
+            <Search size={13} className="absolute left-2.5 text-slate-500 dark:text-slate-400 pointer-events-none" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search whispers..."
-              className="w-full h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-8 pr-7 text-xs placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/40 transition-all"
+              className="w-full h-8 bg-slate-100 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-800 rounded-xl pl-8 pr-7 text-xs text-slate-900 dark:text-slate-100 placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/40 transition-all"
             />
             {searchQuery && (
               <button 
@@ -128,7 +128,7 @@ export function Navbar() {
                   <div className={`w-6 h-6 rounded-lg bg-gradient-to-tr ${getAvatarGradient(user.username || 'Student')} flex items-center justify-center text-[10px] font-bold text-white shadow-sm`}>
                     {getInitials(user.username || 'Student')}
                   </div>
-                  <span className="hidden md:block text-xs font-medium max-w-[80px] truncate">
+                  <span className="hidden md:block text-xs font-semibold text-slate-800 dark:text-slate-200 max-w-[80px] truncate">
                     {user.username || 'Student'}
                   </span>
                 </Link>
@@ -136,7 +136,7 @@ export function Navbar() {
                 {/* Logout Button */}
                 <button
                   onClick={handleLogout}
-                  className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors"
+                  className="p-1.5 sm:p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:text-rose-500 hover:bg-rose-500/10 transition-colors"
                   title="Sign Out"
                 >
                   <LogOut size={16} />

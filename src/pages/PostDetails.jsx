@@ -95,7 +95,7 @@ export function PostDetails() {
         <ErrorMessage message={error || 'Whisper could not be found in the database.'} />
         <Link 
           to="/feed" 
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 text-xs font-semibold text-slate-200 hover:text-white hover:bg-slate-700 transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-semibold text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-700 transition-colors"
         >
           <ArrowLeft size={14} /> Back to Live Feed
         </Link>
@@ -110,7 +110,7 @@ export function PostDetails() {
       <div>
         <Link 
           to="/feed" 
-          className="inline-flex items-center gap-2 text-slate-400 hover:text-white transition-colors text-xs font-semibold px-3 py-1.5 rounded-xl glass-panel border border-white/10 shadow-sm"
+          className="inline-flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors text-xs font-semibold px-3 py-1.5 rounded-xl glass-panel border border-slate-200/80 dark:border-white/10 shadow-sm"
         >
           <ArrowLeft size={14} />
           <span>Back to Feed</span>
@@ -121,16 +121,16 @@ export function PostDetails() {
       <PostCard post={post} isDetail={true} />
 
       {/* Comments Thread Section */}
-      <div className="glass-panel rounded-2xl p-5 sm:p-6 border border-white/[0.08] shadow-lg space-y-5 animate-slide-up">
+      <div className="glass-panel rounded-2xl p-5 sm:p-6 border border-slate-200/90 dark:border-white/[0.08] shadow-lg space-y-5 animate-slide-up">
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-white/[0.06]">
-          <div className="flex items-center gap-2 font-bold text-white text-sm sm:text-base">
-            <MessageSquare size={17} className="text-indigo-400" />
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.06]">
+          <div className="flex items-center gap-2 font-bold text-slate-900 dark:text-white text-sm sm:text-base">
+            <MessageSquare size={17} className="text-indigo-600 dark:text-indigo-400" />
             <span>Discussion Thread ({comments.length})</span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-xs text-emerald-400">
+          <div className="flex items-center gap-1.5 text-xs text-emerald-600 dark:text-emerald-400 font-medium">
             <Lock size={12} />
             <span>Anonymous Replies</span>
           </div>
@@ -150,11 +150,11 @@ export function PostDetails() {
                 placeholder={user ? "Write an anonymous reply..." : "Sign in to add an anonymous reply..."}
                 rows={3}
                 disabled={!user}
-                className="w-full bg-slate-950/80 border border-slate-800 focus:border-indigo-500 rounded-xl p-3 text-xs sm:text-sm text-slate-200 placeholder-slate-500 resize-none focus:outline-none transition-colors disabled:opacity-60"
+                className="w-full bg-slate-50 dark:bg-slate-950/80 border border-slate-300 dark:border-slate-800 focus:border-indigo-500 rounded-xl p-3 text-xs sm:text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 resize-none focus:outline-none transition-colors disabled:opacity-60"
               />
 
               <div className="flex items-center justify-between">
-                <span className="text-[11px] text-slate-500">
+                <span className="text-[11px] text-slate-500 dark:text-slate-400">
                   {user ? "Encrypted and detached pseudonym" : "Sign in required to participate"}
                 </span>
 
@@ -176,7 +176,7 @@ export function PostDetails() {
                 ) : (
                   <Link
                     to="/login"
-                    className="px-3 py-1.5 rounded-lg bg-indigo-600/20 text-indigo-400 hover:bg-indigo-600/30 text-xs font-bold transition-colors"
+                    className="px-3 py-1.5 rounded-lg bg-indigo-600/10 dark:bg-indigo-600/20 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-600/20 dark:hover:bg-indigo-600/30 text-xs font-bold transition-colors"
                   >
                     Sign In
                   </Link>
@@ -189,7 +189,7 @@ export function PostDetails() {
         {/* Comment Stream from Database */}
         <div className="space-y-3 pt-2">
           {comments.length === 0 ? (
-            <div className="text-center py-8 text-xs text-slate-500 italic">
+            <div className="text-center py-8 text-xs text-slate-500 dark:text-slate-400 italic">
               No replies yet. Be the first to join this discussion.
             </div>
           ) : (

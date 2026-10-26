@@ -22,13 +22,13 @@ export function RightWidgetSidebar() {
     <aside className="hidden xl:flex flex-col w-72 fixed right-[max(1rem,calc((100vw-80rem)/2+1rem))] top-20 bottom-6 space-y-4 overflow-y-auto pr-1 select-none">
       
       {/* Live Campus Activity Status */}
-      <div className="p-4 rounded-2xl glass-panel flex items-center justify-between">
+      <div className="p-4 rounded-2xl glass-panel border border-slate-200/80 dark:border-white/[0.08] flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
             <Users size={18} />
           </div>
           <div>
-            <div className="text-xs font-bold flex items-center gap-1.5">
+            <div className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
               <span>Campus Network</span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </div>
@@ -38,13 +38,13 @@ export function RightWidgetSidebar() {
       </div>
 
       {/* Trending Campus Topics */}
-      <div className="p-4 rounded-2xl glass-panel space-y-3">
+      <div className="p-4 rounded-2xl glass-panel border border-slate-200/80 dark:border-white/[0.08] space-y-3">
         <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
-          <div className="flex items-center gap-2 text-xs font-bold">
+          <div className="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200">
             <TrendingUp size={16} className="text-indigo-500" />
             <span>Campus Channels</span>
           </div>
-          <span className="text-[10px] font-semibold text-slate-400 uppercase">Live</span>
+          <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 uppercase">Live</span>
         </div>
 
         <div className="space-y-1.5">
@@ -55,10 +55,10 @@ export function RightWidgetSidebar() {
               className="w-full text-left p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors flex items-center justify-between group"
             >
               <div>
-                <span className="text-xs font-semibold group-hover:text-indigo-500 transition-colors">
+                <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   #{topic.tag}
                 </span>
-                <p className="text-[10px] text-slate-400 capitalize">{topic.category}</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400 capitalize">{topic.category}</p>
               </div>
               <ArrowUpRight size={13} className="text-slate-400 group-hover:text-indigo-500 transition-colors" />
             </button>
@@ -73,11 +73,11 @@ export function RightWidgetSidebar() {
             <ShieldAlert size={16} />
           </div>
           <div>
-            <h4 className="text-xs font-bold text-rose-500">Confidential Safe Report</h4>
-            <span className="text-[10px] text-slate-500 dark:text-slate-400">Direct institutional escalation</span>
+            <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400">Confidential Safe Report</h4>
+            <span className="text-[10px] text-slate-600 dark:text-slate-400">Direct institutional escalation</span>
           </div>
         </div>
-        <p className="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="text-[11px] text-slate-700 dark:text-slate-300 leading-relaxed">
           Report harassment, safety concerns, or academic misconduct. Submissions route to university compliance without revealing identity.
         </p>
         <Link
@@ -89,8 +89,8 @@ export function RightWidgetSidebar() {
       </div>
 
       {/* Campus Code of Ethics */}
-      <div className="p-4 rounded-2xl glass-panel space-y-2.5 text-[11px] text-slate-500 dark:text-slate-400">
-        <span className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[10px] block">
+      <div className="p-4 rounded-2xl glass-panel border border-slate-200/80 dark:border-white/[0.08] space-y-2.5 text-[11px] text-slate-600 dark:text-slate-400">
+        <span className="font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider text-[10px] block">
           Community Code
         </span>
         <div className="flex items-start gap-2">

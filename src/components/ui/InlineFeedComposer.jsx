@@ -41,7 +41,7 @@ export function InlineFeedComposer() {
   const username = user?.username || "Student";
 
   return (
-    <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-200 dark:border-white/[0.08] shadow-lg transition-all animate-fade-in">
+    <div className="glass-panel rounded-2xl p-4 sm:p-5 border border-slate-200/90 dark:border-white/[0.08] shadow-lg transition-all animate-fade-in">
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="flex items-start gap-3">
           {/* User / Anonymous Avatar */}
