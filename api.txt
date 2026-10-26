@@ -3,6 +3,21 @@ Base URL: http://localhost:8080/api
 Every protected API requires the header: `Authorization: Bearer <token>`
 
 --------------------------------------------------
+0. HEALTH CHECK
+--------------------------------------------------
+Health Check
+- URL: GET /health or GET /api/health
+- Access: Public (No token required)
+- Request Body: None
+- Response Data:
+  {
+    "status": "UP",
+    "service": "CampusWhisper Backend",
+    "message": "Service is healthy and running",
+    "timestamp": "2026-10-26T08:25:00Z"
+  }
+
+--------------------------------------------------
 1. AUTHENTICATION
 --------------------------------------------------
 Signup
